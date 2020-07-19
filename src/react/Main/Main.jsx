@@ -6,6 +6,7 @@ import styles from './Main.css';
 
 import Welcome from '../Welcome/Welcome.jsx';
 import Titlebar from '../Titlebar/Titlebar.jsx';
+import RoutesList from '../Routes/RoutesList/RoutesList.jsx';
 
 const { ipcRenderer } = window.require('electron');
 
@@ -22,7 +23,6 @@ class Main extends React.Component {
         }
 
         this.getRoutes = this.getRoutes.bind(this);
-        this.renderRoutes = this.renderRoutes.bind(this);
     }
 
     getRoutes() {
@@ -55,29 +55,29 @@ class Main extends React.Component {
         });
     }
 
-    renderRoutes() {
-        return this.state.routes.map((route) => {
-            return (
-                <div>
-                    <p>id: {route.id}</p>
-                    <p>name: {route.long_name}</p>
-                    <p>destinations: {route.direction_destinations}</p>
-                </div>
-            );
-        });
-    }
-
     componentDidMount() {
         console.log("Main mounting complete");
+
+        // TODO: Remove when dev complete, just skipping Welcome screen
+        this.getRoutes();
     }
 
     render() {
         return (
             <Container className={styles.container} fluid={true}>
                 <Titlebar title={this.state.title} />
-                { this.state.routes ? 
-                    this.renderRoutes()
-                    : // else, if routes are null, show Welcome startup screen
+                { this.state.routes ?
+                    <Row className={styles.body}>
+                        <RoutesList
+                            shape={{size: 3, offset: 1}}
+                            routes={this.state.routes}
+                            routeSelected={this.state.routeSelected}
+                            filterBy={this.state.filter}
+                            getRoutes={this.getRoutes}
+                            getRouteStops={this.getRouteStops}
+                        />
+                    </Row>
+                : // else, if routes are null, show Welcome startup screen
                     <Welcome getRoutes={this.getRoutes} />
                 }
             </Container>
