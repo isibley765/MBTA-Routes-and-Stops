@@ -9,6 +9,12 @@ export default class RoutesListItem extends React.Component {
         this.state = {
             COMPONENT_NAME: "RoutesListItem",
         }
+
+        this.callRouteStops = this.callRouteStops.bind(this);
+    }
+
+    callRouteStops() {
+        this.props.getRouteStops(this.props.id);
     }
 
     componentDidMount() {
@@ -20,7 +26,7 @@ export default class RoutesListItem extends React.Component {
     render() {
         let container = this.props.selected ? styles.containerSelected : styles.container;
         return (
-            <Col sm={{size: 12}} className={container}>
+            <Col sm={{size: 12}} className={container} onClick={this.callRouteStops}>
                 <Row>
                     <Col sm={{size: 2}} className={styles.alignRight}><span>ID:</span></Col>
                         <Col sm={{size: 10}}><b>{this.props.id}</b></Col>

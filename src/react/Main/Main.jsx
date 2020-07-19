@@ -23,6 +23,7 @@ class Main extends React.Component {
         }
 
         this.getRoutes = this.getRoutes.bind(this);
+        this.getRouteStops = this.getRouteStops.bind(this);
     }
 
     getRoutes() {
@@ -53,6 +54,36 @@ class Main extends React.Component {
                 }
             });
         });
+    }
+
+    getRouteStops(routeID) {
+        if (routeID != this.state.routeSelected) {
+            console.log(`Requesting ${routeID}'s stops`);
+            ipcRenderer.send('stops-request', routeID);
+
+            ipcRenderer.once('stops-reply', (event, data) => {
+                if (data.err) {
+                    console.log("Problem fetching route stops");
+                } else {
+                    let stops = data.res;
+                    let filteredStops = [];
+                    for (var i = 0; i < stops.length; i++) {
+                        let stop = stops[i];
+                        let filtStop = {
+                            id: stop.id,
+                            name: stop.attributes.name,
+                            address: stop.attributes.address
+                        };
+                        filteredStops.push(filtStop);
+                    }
+                    console.log(filteredStops);
+                    this.setState({
+                        'routeStops': filteredStops,
+                        'routeSelected': routeID
+                    });
+                }
+            });
+        }
     }
 
     componentDidMount() {
