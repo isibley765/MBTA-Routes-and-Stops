@@ -1,0 +1,24 @@
+.container {
+    padding-top: 10px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.container:hover {
+    background-color: #eaeaea;
+    cursor: pointer;
+}
+
+.alignRight {
+    text-align: right;
+    padding: 0;
+}
+
+.route {
+    padding-top: 10px;
+    margin-left: 3vw;
+    color: lightgrey;
+}
+
+.routeDestinations {
+    margin-left: 5vw;
+}

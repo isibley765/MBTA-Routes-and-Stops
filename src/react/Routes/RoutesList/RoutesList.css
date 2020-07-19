@@ -22,7 +22,7 @@
 }
 
 .routeListings {
-    padding-top: 1vh;
     overflow-y: auto;
+    overflow-x: hidden;
     height: 78vh;
 }

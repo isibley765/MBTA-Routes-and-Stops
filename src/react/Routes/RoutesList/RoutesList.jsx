@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col} from 'reactstrap';
 import styles from './RoutesList.css';
+import RoutesListItem from '../RoutesListItem/RoutesListItem.jsx';
 
 export default class RoutesList extends React.Component {
     constructor(props) {
@@ -25,15 +26,18 @@ export default class RoutesList extends React.Component {
             return routes.map((route) => {
                 if (!this.state.filter || containsSubstring(route.long_name, this.props.filterBy)) {
                     return (
-                        <div key={route.id}>
-                            <p>id: {route.id}</p>
-                            <p>name: {route.long_name}</p>
-                            <p>destinations: {route.direction_destinations}</p>
-                        </div>
+                        <RoutesListItem 
+                            key={route.id}
+                            id={route.id}
+                            selected={this.props.routeSelected == route.id}
+                            name={route.long_name}
+                            getRouteStops={this.props.getRouteStops}
+                            destinations={route.direction_destinations}
+                        />
                     );
                 }
             });
-            
+
         } else {
             /* 
                 don't want to insert text too quick to see
