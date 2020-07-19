@@ -16,15 +16,32 @@ export default class RoutesList extends React.Component {
     }
 
     renderRoutes() {
-        return this.props.routes.map((route) => {
-            return (
-                <div key={route.id}>
-                    <p>id: {route.id}</p>
-                    <p>name: {route.long_name}</p>
-                    <p>destinations: {route.direction_destinations}</p>
-                </div>
-            );
-        });
+        if (this.props.routes != null && 0 < this.props.routes.length) {
+            let routes = this.props.routes;
+            let containsSubstring = (string1, string2) => {
+                return string1.toLowerCase().includes(string2.toLowerCase())
+            }
+
+            return routes.map((route) => {
+                if (!this.state.filter || containsSubstring(route.long_name, this.props.filterBy)) {
+                    return (
+                        <div key={route.id}>
+                            <p>id: {route.id}</p>
+                            <p>name: {route.long_name}</p>
+                            <p>destinations: {route.direction_destinations}</p>
+                        </div>
+                    );
+                }
+            });
+            
+        } else {
+            /* 
+                don't want to insert text too quick to see
+                also don't want to force a wait time to see said text
+                Just go blank for now
+            */
+            return;
+        }
     }
 
     setFilter(e) {
