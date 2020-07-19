@@ -31,6 +31,18 @@ function createWindow () {
         win.webContents.send('routes-reply', {'err': err, 'res': res});
     })
   });
+
+  ipcMain.on('stops-request', (event, routeID) => {
+      console.log(`Getting ${routeID}'s stops...`)
+    GetQueriesMTBA.getRouteStops(routeID, (res, err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(`Route ${routeID}'s stops gotten!`);
+        }
+        win.webContents.send('stops-reply', {'err': err, 'res': res});
+    })
+  });
 }
 
 // This method will be called when Electron has finished

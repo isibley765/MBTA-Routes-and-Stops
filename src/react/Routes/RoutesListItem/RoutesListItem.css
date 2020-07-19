@@ -3,6 +3,12 @@
     border-bottom: 1px solid #eaeaea;
 }
 
+.containerSelected {
+    padding-top: 10px;
+    border-bottom: 1px solid #eaeaea;
+    background-color: #134a77;
+}
+
 .container:hover {
     background-color: #134a77;
     cursor: pointer;
