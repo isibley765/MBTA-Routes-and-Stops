@@ -1,0 +1,19 @@
+.container {
+    margin-top: 1vh;
+    border-top: 2px solid #eaeaea;
+    border-bottom: 3px solid #eaeaea;
+    height: 100%;
+    overflow: auto;
+}
+
+.listBody {
+    background-color: #326c9c;
+}
+
+.listBody > hr {
+    height: 0px;
+    padding: 0px;
+    margin: 0px;
+    border: 1px solid #eaeaea;
+    width: 100%;
+}

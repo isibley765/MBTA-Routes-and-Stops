@@ -7,6 +7,7 @@ import styles from './Main.css';
 import Welcome from '../Welcome/Welcome.jsx';
 import Titlebar from '../Titlebar/Titlebar.jsx';
 import RoutesList from '../Routes/RoutesList/RoutesList.jsx';
+import StopsList from '../Stops/StopsList/StopsList.jsx';
 
 const { ipcRenderer } = window.require('electron');
 
@@ -106,6 +107,10 @@ class Main extends React.Component {
                             filterBy={this.state.filter}
                             getRoutes={this.getRoutes}
                             getRouteStops={this.getRouteStops}
+                        />
+                        <StopsList
+                            shape={{size: 6, offset: 1}}
+                            stops={this.state.routeStops}
                         />
                     </Row>
                 : // else, if routes are null, show Welcome startup screen
