@@ -1,0 +1,43 @@
+{
+  "name": "mbta-routes-and-stops",
+  "version": "1.0.0",
+  "description": "Small coding application to query routes & their stops, from the MBTA API: https://api-v3.mbta.com/",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+
+    "build": "webpack -d",
+    "watch": "webpack -wd",
+    "production": "webpack -p",
+
+    "template": "node makeFromTemplate.js ",
+
+    "example": "node exampleQuerries.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isibley765/MBTA-Routes-and-Stops.git"
+  },
+  "author": "Ian Sibley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isibley765/MBTA-Routes-and-Stops/issues"
+  },
+  "homepage": "https://github.com/isibley765/MBTA-Routes-and-Stops#readme",
+  "dependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "axios": "^0.19.2",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.6.0",
+    "electron": "^9.1.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "reactstrap": "^8.5.1",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-combine-loaders": "^2.0.4"
+  }
+}
