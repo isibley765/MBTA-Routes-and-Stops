@@ -1,0 +1,11 @@
+.listBody {
+    background-color: #326c9c;
+}
+
+.listBody > hr {
+    height: 0px;
+    padding: 0px;
+    margin: 0px;
+    border: 1px solid #eaeaea;
+    width: 100%;
+}

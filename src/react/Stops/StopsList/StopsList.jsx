@@ -2,6 +2,8 @@ import React from 'react';
 import { Container, Row, Col} from 'reactstrap';
 import styles from './StopsList.css';
 
+import StopsListItem from '../StopsListItem/StopsListItem.jsx'
+
 export default class StopsList extends React.Component {
     constructor(props) {
         super(props);
@@ -22,24 +24,13 @@ export default class StopsList extends React.Component {
             );
         }
 
-        
         return this.props.stops.map((stop) => {
-            let address;
-            if (stop.address != null) {
-                address = stop.address.split(',')[0];
-            } else {
-                address = "Not provided"
-            }
-
             return (
-                <Row className={styles.listBody}>
-                    <Col sm={{size: 12}}>{stop.name}</Col>
-                    <Col sm={{size: 10, offset: 1}}>
-                        Address: {address}
-                    </Col>
-                    <br/>
-                    <hr/>
-                </Row>
+                <StopsListItem
+                    key={stop.id}
+                    name={stop.name}
+                    address={stop.address}
+                />
             );
         });
     }
@@ -53,6 +44,9 @@ export default class StopsList extends React.Component {
     render() {
         return (
             <Col sm={this.props.shape} className={styles.container}>
+                <Row className={styles.stopsTitle}>
+                    <h3>Stops:</h3>
+                </Row>
                 {this.renderStops()}
             </Col>
         );
