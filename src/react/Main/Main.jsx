@@ -59,7 +59,7 @@ class Main extends React.Component {
 
     getRouteStops(routeID) {
         if (routeID != this.state.routeSelected) {
-            console.log(`Requesting ${routeID}'s stops`);
+            // console.log(`Requesting ${routeID}'s stops`);
             ipcRenderer.send('stops-request', routeID);
 
             ipcRenderer.once('stops-reply', (event, data) => {
@@ -77,7 +77,6 @@ class Main extends React.Component {
                         };
                         filteredStops.push(filtStop);
                     }
-                    console.log(filteredStops);
                     this.setState({
                         'routeStops': filteredStops,
                         'routeSelected': routeID
@@ -88,10 +87,9 @@ class Main extends React.Component {
     }
 
     componentDidMount() {
-        console.log("Main mounting complete");
-
-        // TODO: Remove when dev complete, just skipping Welcome screen
-        this.getRoutes();
+        if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+            console.log(this.state.COMPONENT_NAME + " mounted!");
+        }
     }
 
     render() {
@@ -99,7 +97,7 @@ class Main extends React.Component {
             <Container className={styles.container} fluid={true}>
                 <Titlebar title={this.state.title} />
                 { this.state.routes ?
-                    <Row className={styles.body}>
+                    <Row className={styles.contentBody}>
                         <RoutesList
                             shape={{size: 3, offset: 1}}
                             routes={this.state.routes}

@@ -52,16 +52,16 @@ module.exports = class QueryMTBA {
         if (routeID in this.stopCache && this.stopCache[routeID] != null) {
             if (Date.now() - this.stopCache[routeID].timeStamp < this.oldAge) {
                 // if cache is youthful, return remembered data
-                console.log(`Returning cached stops for ${routeID}`);
+                // console.log(`Returning cached stops for ${routeID}`);
                 return callback(this.stopCache[routeID].data, null);
             } else {
                 // if it's aged out, remove cache
-                console.log(`Old cache for ${routeID}, removing`);
+                // console.log(`Old cache for ${routeID}, removing`);
                 this.stopCache[routeID] = null;
             }
-        } else {
+        }/* else {
             console.log(`No cached stops for ${routeID}\n`);
-        }
+        }*/
 
         var url = `${this.buildUrl(this.stops)}?filter[route]=${routeID}`;
 

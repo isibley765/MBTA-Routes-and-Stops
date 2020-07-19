@@ -18,28 +18,26 @@ function createWindow () {
   win.loadFile('src/index.html');
 
   // Open the DevTools.
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
 
   ipcMain.on('routes-request', (event, message) => {
-      console.log("Getting routes...")
+    // console.log("Getting routes...")
     GetQueriesMTBA.getRoutes((res, err) => {
         if (err) {
             console.log(err);
-        } else {
-            console.log("Routes gotten!");
         }
+
         win.webContents.send('routes-reply', {'err': err, 'res': res});
     })
   });
 
   ipcMain.on('stops-request', (event, routeID) => {
-      console.log(`Getting ${routeID}'s stops...`)
+    // console.log(`Getting ${routeID}'s stops...`)
     GetQueriesMTBA.getRouteStops(routeID, (res, err) => {
         if (err) {
             console.log(err);
-        } else {
-            console.log(`Route ${routeID}'s stops gotten!`);
         }
+
         win.webContents.send('stops-reply', {'err': err, 'res': res});
     })
   });

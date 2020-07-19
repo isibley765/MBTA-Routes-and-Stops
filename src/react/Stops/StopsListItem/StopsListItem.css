@@ -1,11 +1,30 @@
-.listBody {
+.container {
     background-color: #326c9c;
 }
 
-.listBody > hr {
+.container > hr {
     height: 0px;
     padding: 0px;
     margin: 0px;
     border: 1px solid #eaeaea;
     width: 100%;
+}
+
+.openExternal {
+    padding-left: 1rem;
+    color: lightgrey;
+}
+
+.cantOpenExternal {
+    padding-left: 1rem;
+    color: lightgrey;
+}
+
+.openExternal:hover {
+    cursor: pointer;
+    color: white;
+}
+
+.openExternal:active {
+    color: yellow;
 }

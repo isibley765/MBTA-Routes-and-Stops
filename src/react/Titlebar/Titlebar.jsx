@@ -12,8 +12,9 @@ export default class Titlebar extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.state.COMPONENT_NAME + " mounted!");
-        window[this.state.COMPONENT_NAME] = this;
+        if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+            console.log(this.state.COMPONENT_NAME + " mounted!");
+        }
     }
 
     render() {

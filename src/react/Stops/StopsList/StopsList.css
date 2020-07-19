@@ -3,7 +3,12 @@
     border-top: 2px solid #eaeaea;
     border-bottom: 3px solid #eaeaea;
     height: 100%;
-    overflow: auto;
+    
+    border-top: 2px solid  #3175ad;
+    border-left: 4px solid #0b4677;
+    border-bottom: 3px solid  #052947;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 
     background-color: #1D77C2;
 }
@@ -11,4 +16,11 @@
 .stopsTitle {
     padding-left: 15px;
     border-bottom: 2px solid #eaeaea;
+
+    height: 10vh;
+}
+
+.stopsBody {
+    overflow: auto;
+    height: 78vh;
 }

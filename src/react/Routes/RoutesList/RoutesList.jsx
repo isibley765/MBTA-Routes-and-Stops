@@ -52,6 +52,8 @@ export default class RoutesList extends React.Component {
         this.setState({
             'filter': !this.state.filter
         });
+
+        this.props.getRoutes();
     }
 
     componentDidMount() {

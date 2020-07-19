@@ -47,7 +47,9 @@ export default class StopsList extends React.Component {
                 <Row className={styles.stopsTitle}>
                     <h3>Stops:</h3>
                 </Row>
-                {this.renderStops()}
+                <Container className={styles.stopsBody}>
+                    {this.renderStops()}
+                </Container>
             </Col>
         );
     }

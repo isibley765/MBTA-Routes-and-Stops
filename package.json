@@ -6,9 +6,9 @@
   "scripts": {
     "start": "electron .",
 
-    "build": "webpack -d",
+    "dev": "webpack -d",
     "watch": "webpack -wd",
-    "production": "webpack -p",
+    "build": "webpack -p",
 
     "template": "node makeFromTemplate.js ",
 

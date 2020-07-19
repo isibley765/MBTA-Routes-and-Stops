@@ -1,6 +1,7 @@
 .container {
     padding-top: 10px;
     border-bottom: 1px solid #eaeaea;
+    background-color: #326c9c;
 }
 
 .containerSelected {
