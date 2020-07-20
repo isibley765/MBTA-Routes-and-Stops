@@ -39,7 +39,7 @@ module.exports = class QueryMTBA {
             })
             .catch(err => {
                 if (err) {
-                    console.log(`ROUTE ERROR!\n${url}\n`);
+                    console.log(`ROUTES ERROR!\n${url}\n`);
                 }
 
                 callback(null, err);

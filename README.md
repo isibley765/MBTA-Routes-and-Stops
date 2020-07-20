@@ -30,7 +30,7 @@ Small coding application to query routes &amp; their stops, from the [MBTA API](
   - Routes can be filtered based on this type
     - ex: `/routes?filter[type]=1`
 - Route ID's are in their top-level `"id"` field in the JSON
-   - `Red`, `Orange`, `Green-B`, etc.
+  - `Red`, `Orange`, `Green-B`, etc.
 
 ### [Stops](https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index)
 

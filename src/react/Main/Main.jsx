@@ -27,6 +27,25 @@ class Main extends React.Component {
         this.getRouteStops = this.getRouteStops.bind(this);
     }
 
+    raiseServerError(err) {
+        var message;
+
+        console.log("ERROR: Problem fetching from MBTA servers");
+        console.log(err.message);
+        var errorCode = err.statusCode;
+
+        if (errorCode == 429) {
+            message =   "Too many requests against the MTBA servers\n" +
+                        "  Please wait 1 minute to reset"
+        } else {
+            message =   `Unknown error with response code ${errorCode}\n` +
+                        `Please see console for more details\n` +
+                        `Wait 1 minute if exceeding rate limits`
+        }
+
+        alert(message);
+    }
+
     getRoutes() {
         // console.log("Requesting routes");
         this.setState({'routes': [], 'routeStops': null}, () => {
@@ -34,7 +53,7 @@ class Main extends React.Component {
     
             ipcRenderer.once('routes-reply', (event, data) => {
                 if (data.err) {
-                    console.log("Problem fetching routes");
+                    this.raiseServerError(data.err);
                 } else {
                     let routes = data.res;
                     let filteredRoutes = [];
@@ -64,7 +83,8 @@ class Main extends React.Component {
 
             ipcRenderer.once('stops-reply', (event, data) => {
                 if (data.err) {
-                    console.log("Problem fetching route stops");
+                    console.log(data.err);
+                    this.raiseServerError(data.err);
                 } else {
                     let stops = data.res;
                     let filteredStops = [];

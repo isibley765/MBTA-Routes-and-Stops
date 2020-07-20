@@ -23,23 +23,33 @@ function createWindow () {
   ipcMain.on('routes-request', (event, message) => {
     // console.log("Getting routes...")
     GetQueriesMTBA.getRoutes((res, err) => {
-        if (err) {
-            console.log(err);
-        }
-
-        win.webContents.send('routes-reply', {'err': err, 'res': res});
+      if (err != null && err.response != null) {
+        console.log(err.response.data);
+        console.log(`Status code: ${err.response.status}`);
+        console.log(err.response.headers);
+    
+        // response is unserializeable?? This allows me to retain the status code for the application
+        win.webContents.send('routes-reply', {'err': {message: err, statusCode: err.response.status}, 'res': null});
+      } else {
+        win.webContents.send('routes-reply', {'err': null, 'res': res});
+      }
     })
   });
 
   ipcMain.on('stops-request', (event, routeID) => {
     // console.log(`Getting ${routeID}'s stops...`)
     GetQueriesMTBA.getRouteStops(routeID, (res, err) => {
-        if (err) {
-            console.log(err);
-        }
-
-        win.webContents.send('stops-reply', {'err': err, 'res': res});
-    })
+      if (err != null && err.response != null) {
+        console.log(err.response.data);
+        console.log(`Status code: ${err.response.status}`);
+        console.log(err.response.headers);
+    
+        // response is unserializeable?? This allows me to retain the status code for the application
+        win.webContents.send('stops-reply', {'err': {message: err, statusCode: err.response.status}, 'res': null});
+      } else {
+        win.webContents.send('stops-reply', {'err': null, 'res': res});
+      }
+    });
   });
 }
 
