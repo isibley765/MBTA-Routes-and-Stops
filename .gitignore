@@ -1,6 +1,7 @@
 # Project specific
 build_finals/
 package-lock.json
+mbta-routes-and-stops*/
 
 # Logs
 logs
